@@ -9,8 +9,8 @@
  */
 package com.pbo.noteapp.ui;
 
-import com.pbo.noteapp.storage.DataStorage;
 import com.pbo.noteapp.storage.DatabaseStorage;
+import com.pbo.noteapp.service.NoteService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -46,10 +46,13 @@ public class NoteAppMenu {
                     System.out.println("Pilihan tidak valid, coba lagi.");
             }
         }
+        scanner.close(); // Menutup scanner setelah selesai
     }
 
     private void showMenu() {
-        System.out.println("\nNote App Menu oleh: Abdulloh Mun'am NIM: 23201292");
+        System.out.println("\n============== Note App =============");
+        System.out.println("  oleh Abdulloh Mun'am NIM 23201292  \n");
+        System.out.println("Menu :");
         System.out.println("1. Tambah Catatan");
         System.out.println("2. Tampilkan Catatan");
         System.out.println("3. Hapus Catatan");
@@ -66,7 +69,7 @@ public class NoteAppMenu {
     }
 
     private void addNote() {
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine(); // Membersihkan buffer
         System.out.print("Masukkan catatan: ");
         String note = scanner.nextLine();
         noteService.createNote(note);
@@ -84,37 +87,6 @@ public class NoteAppMenu {
             }
         }
     }
-public class NoteService {
-    private DataStorage storage;
-    private List<String> notes;
-
-    public NoteService(DataStorage storage) {
-        this.storage = storage;
-        this.notes = readNotes();
-    }
-
-    public void createNote(String note) {
-        storage.writeData(note);
-        notes.add(note);
-    }
-
-    public List<String> readNotes() {
-        return storage.readData();
-    }
-
-    public void deleteNote(String note) {
-        notes.remove(note);
-        storage.deleteData(note);
-    }
-
-    public int getNoteCount() {
-        return notes.size();
-    }
-
-    public String getNoteByIndex(int index) {
-        return notes.get(index);
-    }
-}
 
     private void deleteNote() {
         showNotes();
