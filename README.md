@@ -1,2 +1,4 @@
-Repository Project UAS PBO
-Program Catatan
+# NOTE APP
+
+Repository untuk project UASA
+Mata kuliah Pemrograman Berbasis Objek (Java)
